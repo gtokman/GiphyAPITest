@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -25,42 +26,75 @@
                                 </constraints>
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Search Giphy" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cog-N4-GVX">
-                                <rect key="frame" x="150" y="222" width="300" height="30"/>
+                                <rect key="frame" x="20" y="222" width="504" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="MDv-kt-gME"/>
                                     <constraint firstAttribute="height" constant="30" id="cCD-ZG-dJ8"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="search"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="MDv-kt-gME"/>
+                                    </mask>
+                                </variation>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Isc-OQ-vCI">
-                                <rect key="frame" x="476" y="221" width="48" height="30"/>
-                                <color key="backgroundColor" red="0.64705882349999999" green="0.87450980389999999" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="frt-Af-ytG">
+                                <rect key="frame" x="532" y="222" width="48" height="30"/>
+                                <color key="backgroundColor" red="0.96470588239999999" green="0.72156862749999995" blue="0.72156862749999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="48" id="r1F-M4-C1a"/>
+                                </constraints>
                                 <state key="normal" title="Search">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="searchButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="SgR-fT-KSe"/>
+                                    <action selector="searchButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cI0-mL-6Ol"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Qpx-4s-uh9">
+                                <rect key="frame" x="290" y="194" width="20" height="20"/>
+                                <color key="color" red="0.93725490199999995" green="0.32156862749999998" blue="0.52156862749999999" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="frt-Af-ytG" firstAttribute="leading" secondItem="cog-N4-GVX" secondAttribute="trailing" constant="8" id="3TY-DK-WW9"/>
+                            <constraint firstItem="frt-Af-ytG" firstAttribute="leading" secondItem="cog-N4-GVX" secondAttribute="trailing" constant="8" id="5mO-w8-sH7"/>
                             <constraint firstItem="nfV-0y-TCn" firstAttribute="centerX" secondItem="cog-N4-GVX" secondAttribute="centerX" id="7Wp-47-g6t"/>
-                            <constraint firstItem="Isc-OQ-vCI" firstAttribute="leading" secondItem="cog-N4-GVX" secondAttribute="trailing" constant="25.5" id="DZP-nS-vYw"/>
-                            <constraint firstItem="Isc-OQ-vCI" firstAttribute="baseline" secondItem="cog-N4-GVX" secondAttribute="baseline" id="HFA-IG-mem"/>
+                            <constraint firstItem="Qpx-4s-uh9" firstAttribute="centerX" secondItem="nfV-0y-TCn" secondAttribute="centerX" id="8Cv-Yy-vnl"/>
                             <constraint firstItem="nfV-0y-TCn" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="39" id="HhT-Bs-kfO"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="frt-Af-ytG" secondAttribute="trailing" constant="74" id="Tcc-Va-GX6"/>
+                            <constraint firstItem="cog-N4-GVX" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="130" id="V0H-H9-Fl1"/>
                             <constraint firstItem="cog-N4-GVX" firstAttribute="top" secondItem="nfV-0y-TCn" secondAttribute="bottom" constant="35" id="VAg-T6-0QY"/>
+                            <constraint firstItem="Qpx-4s-uh9" firstAttribute="top" secondItem="nfV-0y-TCn" secondAttribute="bottom" constant="7" id="VKt-El-tbT"/>
+                            <constraint firstItem="frt-Af-ytG" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="202" id="W1d-Rt-suF"/>
+                            <constraint firstItem="cog-N4-GVX" firstAttribute="top" secondItem="nfV-0y-TCn" secondAttribute="bottom" constant="35" id="dWv-5e-fub"/>
+                            <constraint firstItem="frt-Af-ytG" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="202" id="pqc-fc-SC4"/>
                             <constraint firstItem="nfV-0y-TCn" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="pvP-N4-VrW"/>
+                            <constraint firstItem="cog-N4-GVX" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="vBy-cE-SAH"/>
+                            <constraint firstItem="frt-Af-ytG" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="zJF-Is-eVI"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="7Wp-47-g6t"/>
+                                <exclude reference="V0H-H9-Fl1"/>
+                                <exclude reference="VAg-T6-0QY"/>
+                                <exclude reference="5mO-w8-sH7"/>
+                                <exclude reference="Tcc-Va-GX6"/>
+                                <exclude reference="pqc-fc-SC4"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="Qpx-4s-uh9" id="gn1-Hv-CgC"/>
                         <outlet property="imageView" destination="nfV-0y-TCn" id="pcj-Sv-Pvl"/>
                         <outlet property="searchTextField" destination="cog-N4-GVX" id="7v2-rR-Xfr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="580" y="429"/>
         </scene>
     </scenes>
 </document>

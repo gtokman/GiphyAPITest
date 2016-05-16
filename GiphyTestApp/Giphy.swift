@@ -8,22 +8,6 @@
 
 import UIKit
 
-protocol GiphyType {
-	var height: Double { get }
-	var width: Double { get }
-	var url: NSURL { get }
-}
-
-enum Error: ErrorType {
-	case NetWorkError
-}
-
-struct Giphy: GiphyType {
-	var height: Double
-	var width: Double
-	var url: NSURL
-}
-
 struct GiphyAPI {
 	var baseURL: String
 
@@ -59,11 +43,12 @@ struct GiphyAPI {
 
 			do {
 				parsedResult = try NSJSONSerialization.JSONObjectWithData(data, options: []) as! [String: AnyObject]
-				print(parsedResult)
+				
 			} catch {
 				print("Parsing data: \(error)")
 			}
 
+			// Pass to completion
 			completionHandler(parsedResult)
 		}
 		task.resume()

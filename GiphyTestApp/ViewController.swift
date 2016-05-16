@@ -12,6 +12,7 @@ class ViewController: UIViewController {
 	// MARK: - Properties
 	@IBOutlet weak var imageView: UIImageView?
 	@IBOutlet weak var searchTextField: UITextField?
+	@IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -20,7 +21,13 @@ class ViewController: UIViewController {
 
 	// MARK: - Helper
 
-	func getGiph() {
+	func performUIUpdatesOnMain(updates: () -> Void) {
+		dispatch_async(dispatch_get_main_queue()) {
+			updates()
+		}
+	}
+
+	func getGiph(completion: String -> ()) {
 		// Check textfield
 		guard let searchField = searchTextField?.text where !searchField.isEmpty else {
 			return
@@ -30,15 +37,45 @@ class ViewController: UIViewController {
 		let giphySearch = GiphyAPI(search: searchField)
 
 		// Make request
-		giphySearch.getImageWithURL { data in
-			print(data)
+		giphySearch.getImageWithURL { giphyData in
+
+			guard let data = giphyData["data"] as? [AnyObject],
+				let firstGiphy = data.first as? [String: AnyObject],
+				let imageData = firstGiphy["images"] as? [String: AnyObject],
+				let image = imageData["downsized_large"] as? [String: AnyObject],
+				let url = image["url"] as? String
+			else {
+				return
+			}
+
+			print(url)
+
+			completion(url)
+		}
+	}
+
+	func convertToImage() {
+		// Convert URL to ImageView // Used extension from Github https://github.com/kiritmodi2702/GIFIamgeView_Swift to animate
+
+		getGiph { (url) in
+			let imageURL = NSURL(string: url)
+
+			if let imageData = NSData(contentsOfURL: imageURL!) {
+				self.performUIUpdatesOnMain({
+					self.imageView?.image = UIImage.animatedImageWithAnimatedGIFData(imageData)
+					self.activityIndicator.stopAnimating()
+				})
+			} else {
+				print("Convert image error")
+			}
 		}
 	}
 
 	// MARK: - Actions
-
-	@IBAction func searchButtonPressed(sender: UIButton) {
-		getGiph()
+	@IBAction func searchButton(sender: UIButton) {
+		activityIndicator.hidden = false
+		activityIndicator.startAnimating()
+		convertToImage()
 	}
 }
 
