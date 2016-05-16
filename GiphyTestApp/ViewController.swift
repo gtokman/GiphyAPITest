@@ -14,11 +14,6 @@ class ViewController: UIViewController {
 	@IBOutlet weak var searchTextField: UITextField?
 	@IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 
-	override func viewDidLoad() {
-		super.viewDidLoad()
-		// Do any additional setup after loading the view, typically from a nib.
-	}
-
 	// MARK: - Helper
 
 	func performUIUpdatesOnMain(updates: () -> Void) {
@@ -27,7 +22,7 @@ class ViewController: UIViewController {
 		}
 	}
 
-	func getGiph(completion: String -> ()) {
+	func getGiphURL(completion: String -> ()) {
 		// Check textfield
 		guard let searchField = searchTextField?.text where !searchField.isEmpty else {
 			return
@@ -57,7 +52,7 @@ class ViewController: UIViewController {
 	func convertToImage() {
 		// Convert URL to ImageView // Used extension from Github https://github.com/kiritmodi2702/GIFIamgeView_Swift to animate
 
-		getGiph { (url) in
+		getGiphURL { (url) in
 			let imageURL = NSURL(string: url)
 
 			if let imageData = NSData(contentsOfURL: imageURL!) {
@@ -72,6 +67,7 @@ class ViewController: UIViewController {
 	}
 
 	// MARK: - Actions
+
 	@IBAction func searchButton(sender: UIButton) {
 		activityIndicator.hidden = false
 		activityIndicator.startAnimating()
