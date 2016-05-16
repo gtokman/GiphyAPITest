@@ -31,7 +31,7 @@ struct GiphyAPI {
 		baseURL = "http://api.giphy.com/v1/gifs/search?q=\(search)&api_key=dc6zaTOxFJmzC"
 	}
 
-	typealias GiphData = (AnyObject) -> [String: AnyObject]
+	typealias GiphData = [String: AnyObject] -> ()
 
 	// Create request
 	func getImageWithURL(completionHandler: GiphData) {
@@ -49,20 +49,22 @@ struct GiphyAPI {
 
 			// Check error, Data, Response successful?
 			guard error == nil,
-                let data = data,
-                let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
-				print("Error: \(error)")
-				return
+				let data = data,
+				let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
+					print("Error: \(error)")
+					return
 			}
 
-			let parsedResult: AnyObject?
+			var parsedResult = [String: AnyObject]()
 
 			do {
-				parsedResult = try NSJSONSerialization.JSONObjectWithData(data, options: [])
-                print(parsedResult)
+				parsedResult = try NSJSONSerialization.JSONObjectWithData(data, options: []) as! [String: AnyObject]
+				print(parsedResult)
 			} catch {
 				print("Parsing data: \(error)")
 			}
+
+			completionHandler(parsedResult)
 		}
 		task.resume()
 	}

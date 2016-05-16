@@ -39,6 +39,9 @@
                                 <state key="normal" title="Search">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="searchButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="SgR-fT-KSe"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -51,6 +54,10 @@
                             <constraint firstItem="nfV-0y-TCn" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="pvP-N4-VrW"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="imageView" destination="nfV-0y-TCn" id="pcj-Sv-Pvl"/>
+                        <outlet property="searchTextField" destination="cog-N4-GVX" id="7v2-rR-Xfr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
